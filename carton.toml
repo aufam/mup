@@ -1,0 +1,6 @@
+#:schema https://raw.githubusercontent.com/aufam/carton/main/carton-schema.json
+
+[package]
+name = "mup"
+version = "0.1.0"
+edition = 20
