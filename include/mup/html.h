@@ -44,6 +44,9 @@ namespace mup::html {
     using main = Element<true, "main", attr...>;
 
     template <Attr... attr>
+    using main_ = Element<true, "main", attr...>;
+
+    template <Attr... attr>
     using nav = Element<true, "nav", attr...>;
 
     template <Attr... attr>
@@ -342,6 +345,9 @@ namespace mup::html {
     constexpr Element<false, "link", attr...> link;
 
     template <Attr... attr>
+    constexpr Element<false, "link", attr...> link_;
+
+    template <Attr... attr>
     constexpr Element<false, "meta", attr...> meta;
 
     template <Attr... attr>
@@ -353,8 +359,185 @@ namespace mup::html {
     template <Attr... attr>
     constexpr Element<false, "wbr", attr...> wbr;
 
-    // template <Attr... attr>
-    // constexpr Element<false, "!DOCTYPE", attr...> doctype;
+
+    // Global attributes
+
+    inline constexpr Attr id_              = "id";
+    inline constexpr Attr class_           = "class";
+    inline constexpr Attr style_           = "style";
+    inline constexpr Attr title_           = "title";
+    inline constexpr Attr lang_            = "lang";
+    inline constexpr Attr dir_             = "dir";
+    inline constexpr Attr hidden_          = "hidden";
+    inline constexpr Attr tabindex_        = "tabindex";
+    inline constexpr Attr role_            = "role";
+    inline constexpr Attr slot_            = "slot";
+    inline constexpr Attr draggable_       = "draggable";
+    inline constexpr Attr contenteditable_ = "contenteditable";
+    inline constexpr Attr spellcheck_      = "spellcheck";
+    inline constexpr Attr translate_       = "translate";
+    inline constexpr Attr accesskey_       = "accesskey";
+    inline constexpr Attr autofocus_       = "autofocus";
+
+    // Form attributes
+
+    inline constexpr Attr name_           = "name";
+    inline constexpr Attr value_          = "value";
+    inline constexpr Attr type_           = "type";
+    inline constexpr Attr placeholder_    = "placeholder";
+    inline constexpr Attr required_       = "required";
+    inline constexpr Attr disabled_       = "disabled";
+    inline constexpr Attr readonly_       = "readonly";
+    inline constexpr Attr checked_        = "checked";
+    inline constexpr Attr selected_       = "selected";
+    inline constexpr Attr multiple_       = "multiple";
+    inline constexpr Attr autocomplete_   = "autocomplete";
+    inline constexpr Attr minlength_      = "minlength";
+    inline constexpr Attr maxlength_      = "maxlength";
+    inline constexpr Attr min_            = "min";
+    inline constexpr Attr max_            = "max";
+    inline constexpr Attr step_           = "step";
+    inline constexpr Attr pattern_        = "pattern";
+    inline constexpr Attr rows_           = "rows";
+    inline constexpr Attr cols_           = "cols";
+    inline constexpr Attr wrap_           = "wrap";
+    inline constexpr Attr accept_         = "accept";
+    inline constexpr Attr capture_        = "capture";
+    inline constexpr Attr for_            = "for";
+    inline constexpr Attr form_           = "form";
+    inline constexpr Attr formaction_     = "formaction";
+    inline constexpr Attr formenctype_    = "formenctype";
+    inline constexpr Attr formmethod_     = "formmethod";
+    inline constexpr Attr formnovalidate_ = "formnovalidate";
+    inline constexpr Attr formtarget_     = "formtarget";
+
+    // Link and resource attributes
+
+    inline constexpr Attr href_            = "href";
+    inline constexpr Attr src_             = "src";
+    inline constexpr Attr alt_             = "alt";
+    inline constexpr Attr target_          = "target";
+    inline constexpr Attr rel_             = "rel";
+    inline constexpr Attr download_        = "download";
+    inline constexpr Attr media_           = "media";
+    inline constexpr Attr integrity_       = "integrity";
+    inline constexpr Attr crossorigin_     = "crossorigin";
+    inline constexpr Attr referrerpolicy_  = "referrerpolicy";
+    inline constexpr Attr loading_         = "loading";
+    inline constexpr Attr fetchpriority_   = "fetchpriority";
+    inline constexpr Attr async_           = "async";
+    inline constexpr Attr defer_           = "defer";
+    inline constexpr Attr width_           = "width";
+    inline constexpr Attr height_          = "height";
+    inline constexpr Attr srcset_          = "srcset";
+    inline constexpr Attr sizes_           = "sizes";
+    inline constexpr Attr sandbox_         = "sandbox";
+    inline constexpr Attr allow_           = "allow";
+    inline constexpr Attr allowfullscreen_ = "allowfullscreen";
+
+    // Table attributes
+
+    inline constexpr Attr colspan_ = "colspan";
+    inline constexpr Attr rowspan_ = "rowspan";
+    inline constexpr Attr headers_ = "headers";
+    inline constexpr Attr scope_   = "scope";
+
+    // Media attributes
+
+    inline constexpr Attr controls_    = "controls";
+    inline constexpr Attr autoplay_    = "autoplay";
+    inline constexpr Attr loop_        = "loop";
+    inline constexpr Attr muted_       = "muted";
+    inline constexpr Attr playsinline_ = "playsinline";
+    inline constexpr Attr poster_      = "poster";
+    inline constexpr Attr preload_     = "preload";
+
+    // Accessibility attributes
+
+    inline constexpr Attr aria_label       = "aria-label";
+    inline constexpr Attr aria_labelledby  = "aria-labelledby";
+    inline constexpr Attr aria_describedby = "aria-describedby";
+    inline constexpr Attr aria_hidden      = "aria-hidden";
+    inline constexpr Attr aria_expanded    = "aria-expanded";
+    inline constexpr Attr aria_controls    = "aria-controls";
+    inline constexpr Attr aria_live        = "aria-live";
+    inline constexpr Attr aria_pressed     = "aria-pressed";
+    inline constexpr Attr aria_selected    = "aria-selected";
+    inline constexpr Attr aria_disabled    = "aria-disabled";
+    inline constexpr Attr aria_current     = "aria-current";
+    inline constexpr Attr aria_invalid     = "aria-invalid";
+    inline constexpr Attr aria_required    = "aria-required";
+    inline constexpr Attr aria_haspopup    = "aria-haspopup";
+
+    // HTMX attributes
+
+    inline constexpr Attr hx_get          = "hx-get";
+    inline constexpr Attr hx_post         = "hx-post";
+    inline constexpr Attr hx_put          = "hx-put";
+    inline constexpr Attr hx_patch        = "hx-patch";
+    inline constexpr Attr hx_delete       = "hx-delete";
+    inline constexpr Attr hx_target       = "hx-target";
+    inline constexpr Attr hx_swap         = "hx-swap";
+    inline constexpr Attr hx_trigger      = "hx-trigger";
+    inline constexpr Attr hx_indicator    = "hx-indicator";
+    inline constexpr Attr hx_push_url     = "hx-push-url";
+    inline constexpr Attr hx_select       = "hx-select";
+    inline constexpr Attr hx_swap_oob     = "hx-swap-oob";
+    inline constexpr Attr hx_vals         = "hx-vals";
+    inline constexpr Attr hx_headers      = "hx-headers";
+    inline constexpr Attr hx_confirm      = "hx-confirm";
+    inline constexpr Attr hx_disabled_elt = "hx-disabled-elt";
+    inline constexpr Attr hx_include      = "hx-include";
+    inline constexpr Attr hx_params       = "hx-params";
+    inline constexpr Attr hx_sync         = "hx-sync";
+    inline constexpr Attr hx_ext          = "hx-ext";
+    inline constexpr Attr hx_boost        = "hx-boost";
+    inline constexpr Attr hx_encoding     = "hx-encoding";
+    inline constexpr Attr hx_preserve     = "hx-preserve";
+    inline constexpr Attr hx_history_elt  = "hx-history-elt";
+    inline constexpr Attr hx_history      = "hx-history";
+    inline constexpr Attr hx_on           = "hx-on";
+    inline constexpr Attr hx_request      = "hx-request";
+
+    // Common event handler attributes
+
+    inline constexpr Attr onclick_      = "onclick";
+    inline constexpr Attr ondblclick_   = "ondblclick";
+    inline constexpr Attr oninput_      = "oninput";
+    inline constexpr Attr onchange_     = "onchange";
+    inline constexpr Attr onsubmit_     = "onsubmit";
+    inline constexpr Attr onreset_      = "onreset";
+    inline constexpr Attr onkeydown_    = "onkeydown";
+    inline constexpr Attr onkeyup_      = "onkeyup";
+    inline constexpr Attr onkeypress_   = "onkeypress";
+    inline constexpr Attr onfocus_      = "onfocus";
+    inline constexpr Attr onblur_       = "onblur";
+    inline constexpr Attr onload_       = "onload";
+    inline constexpr Attr onerror_      = "onerror";
+    inline constexpr Attr onmouseover_  = "onmouseover";
+    inline constexpr Attr onmouseout_   = "onmouseout";
+    inline constexpr Attr onmouseenter_ = "onmouseenter";
+    inline constexpr Attr onmouseleave_ = "onmouseleave";
+    inline constexpr Attr onscroll_     = "onscroll";
+    inline constexpr Attr onwheel_      = "onwheel";
+
+    // Other common attributes
+
+    inline constexpr Attr datetime_       = "datetime";
+    inline constexpr Attr cite_           = "cite";
+    inline constexpr Attr open_           = "open";
+    inline constexpr Attr start_          = "start";
+    inline constexpr Attr reversed_       = "reversed";
+    inline constexpr Attr manifest_       = "manifest";
+    inline constexpr Attr nonce_          = "nonce";
+    inline constexpr Attr content_        = "content";
+    inline constexpr Attr charset_        = "charset";
+    inline constexpr Attr http_equiv_     = "http-equiv";
+    inline constexpr Attr action_         = "action";
+    inline constexpr Attr method_         = "method";
+    inline constexpr Attr enctype_        = "enctype";
+    inline constexpr Attr novalidate_     = "novalidate";
+    inline constexpr Attr accept_charset_ = "accept-charset";
 } // namespace mup::html
 
 #endif
