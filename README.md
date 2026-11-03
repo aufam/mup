@@ -83,7 +83,7 @@ These attributes are fixed at compile time and are suitable for static markup.
 The library also provides named constexpr attribute definitions:
 
 ```cpp
-div<(id="app")>{
+div<(id="app", class_="container")>{
     p<>{"Hello, World!"}
 };
 ```
