@@ -6,7 +6,8 @@ A lightweight C++ library for building HTML markup using C++ types and templates
 
 - Simple, composable markup expressions
 - Compile-time attribute definitions
-- Support for HTML void elements
+- Dynamic attributes with runtime values
+- Conditional and range-based rendering with `mup::when` and `mup::each`
 
 ## Quick Example
 
@@ -37,8 +38,12 @@ struct Task {
 
 auto TaskList(const std::vector<Task> &tasks) {
     return ul<"id='task-list'">{
-        mup::each(tasks, [](auto &task) { return li<>{task.name}; }),
-        mup::when(tasks.empty(), []() { return li<>{"No tasks"}; }),
+        mup::each(tasks, [](auto &task) {
+            return li<>{task.name};
+        }),
+        mup::when(tasks.empty(), []() {
+            return li<>{"No tasks"};
+        }),
     };
 }
 
@@ -58,3 +63,74 @@ int main() {
     std::cout << page << std::endl;
 }
 ```
+
+## Attributes
+
+`mup` supports both compile-time and runtime attributes.
+
+### Compile-time attributes
+
+Attributes can be specified as string literals in element template arguments:
+
+```cpp
+div<"id='app' class='container'">{
+    p<>{"Hello, World!"}
+};
+```
+
+These attributes are fixed at compile time and are suitable for static markup.
+
+The library also provides named constexpr attribute definitions + `opeartor==`:
+
+```cpp
+div<id_=="app">{
+    p<>{"Hello, World!"}
+};
+```
+
+Named attributes provide a more convenient alternative to writing raw attribute strings and help avoid spelling mistakes.
+
+### Dynamic attributes
+
+Attributes can also be assigned runtime values using `operator=`:
+
+```cpp
+std::string Key(std::string k, bool disable) {
+    return button<class_=="key">{
+        id_ = "key-" + k,
+        hx_post = "press/" + k,
+        aria_label = k,
+        disabled_ = disable,
+
+        k,
+    };
+}
+```
+
+This is just equal to:
+```cpp
+std::string Key(std::string k, bool disable) {
+    auto btn = button<class_=="key">{};
+
+    btn.attributes = {
+        "id=\"key-"+k+"\"",
+        "hx-post=\"press/"+k+"\"",
+        "aria-label=\""+k+"\"",
+    };
+
+    if (disable)
+        btn.push_back("disabled");
+
+    btn.content = k;
+
+    return btn;
+}
+```
+
+
+## Limitations
+
+- **No complete HTML validation:**
+  `mup` generates markup but does not guarantee that every element, attribute, or combination conforms to the HTML specification.
+- **Attribute semantics:**
+  HTML boolean attributes have special serialization rules. Ordinary attributes and boolean attributes must be handled according to their respective semantics.
