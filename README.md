@@ -80,10 +80,10 @@ div<"id='app' class='container'">{
 
 These attributes are fixed at compile time and are suitable for static markup.
 
-The library also provides named constexpr attribute definitions + `opeartor==`:
+The library also provides named constexpr attribute definitions:
 
 ```cpp
-div<id_=="app">{
+div<(id="app")>{
     p<>{"Hello, World!"}
 };
 ```
@@ -96,11 +96,8 @@ Attributes can also be assigned runtime values using `operator=`:
 
 ```cpp
 std::string Key(std::string k, bool disable) {
-    return button<class_=="key">{
-        id_ = "key-" + k,
-        hx_post = "press/" + k,
-        aria_label = k,
-        disabled_ = disable,
+    return button<(class_="key")>{
+        (id = "key-" + k, hx_post = "press/" + k, aria_label = k, disabled = disable),
 
         k,
     };
@@ -110,7 +107,7 @@ std::string Key(std::string k, bool disable) {
 This is just equal to:
 ```cpp
 std::string Key(std::string k, bool disable) {
-    auto btn = button<class_=="key">{};
+    auto btn = button<(class_="key")>{};
 
     btn.attributes = {
         "id=\"key-"+k+"\"",
