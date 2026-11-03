@@ -569,6 +569,32 @@ namespace mup::html {
     inline constexpr Attr hx_history      = "hx-history";
     inline constexpr Attr hx_on           = "hx-on";
     inline constexpr Attr hx_request      = "hx-request";
+    inline constexpr Attr hx_select_oob   = "hx-select-oob";
+    inline constexpr Attr hx_prompt       = "hx-prompt";
+    inline constexpr Attr hx_replace_url  = "hx-replace-url";
+    inline constexpr Attr hx_validate     = "hx-validate";
+    inline constexpr Attr hx_disable      = "hx-disable";
+    inline constexpr Attr hx_disinherit   = "hx-disinherit";
+    inline constexpr Attr hx_inherit      = "hx-inherit";
+
+    inline constexpr Attr hx_on_before_request         = "hx-on::before-request";
+    inline constexpr Attr hx_on_after_request          = "hx-on::after-request";
+    inline constexpr Attr hx_on_before_send            = "hx-on::before-send";
+    inline constexpr Attr hx_on_after_on_load          = "hx-on::after-on-load";
+    inline constexpr Attr hx_on_before_swap            = "hx-on::before-swap";
+    inline constexpr Attr hx_on_after_swap             = "hx-on::after-swap";
+    inline constexpr Attr hx_on_after_settle           = "hx-on::after-settle";
+    inline constexpr Attr hx_on_before_cleanup_element = "hx-on::before-cleanup-element";
+    inline constexpr Attr hx_on_send_error             = "hx-on::send-error";
+    inline constexpr Attr hx_on_response_error         = "hx-on::response-error";
+    inline constexpr Attr hx_on_timeout                = "hx-on::timeout";
+    inline constexpr Attr hx_on_abort                  = "hx-on::abort";
+
+    inline constexpr Attr ws_connect  = "ws-connect";
+    inline constexpr Attr ws_send     = "ws-send";
+    inline constexpr Attr sse_connect = "sse-connect";
+    inline constexpr Attr sse_swap    = "sse-swap";
+    inline constexpr Attr sse_close   = "sse-close";
 
     // Common event handler attributes
 
