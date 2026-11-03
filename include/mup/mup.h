@@ -19,6 +19,13 @@ namespace mup {
 
     struct RuntimeAttr {
         std::string attr;
+
+        RuntimeAttr operator,(RuntimeAttr other) const {
+            if (other.attr.empty())
+                return *this;
+
+            return {attr + " " + other.attr};
+        }
     };
 
     template <typename T>
@@ -51,15 +58,29 @@ namespace mup {
             return {value, size()};
         }
 
+        template <size_t... M>
+        constexpr auto append(const Attr<M> &...attributes) const {
+            if constexpr (sizeof...(M) == 0) {
+                return *this;
+            } else {
+                return ((*this, attributes), ...);
+            }
+        }
+
         template <size_t M>
-        constexpr Attr<N + M> concat(const Attr<M> &other, char separator = ' ') const {
+        constexpr Attr<N + M> operator,(const Attr<M> &other) const {
             Attr<N + M> res;
             size_t      i = 0;
 
             for (char ch : this->str())
                 res.value[i++] = ch;
 
-            res.value[i++] = separator;
+            if (other.size() == 0) {
+                res.value[i++] = '\0';
+                return res;
+            }
+
+            res.value[i++] = ' ';
 
             for (char ch : other.str())
                 res.value[i++] = ch;
@@ -67,26 +88,30 @@ namespace mup {
             return res;
         }
 
-        // concat two string at compile time with separator=' '
         template <size_t M>
-        constexpr Attr<N + M> operator+(const Attr<M> &other) const {
-            return concat(other);
-        }
+        constexpr Attr<N + M> operator,(const char (&s)[M]) const {
+            Attr<N + M> res;
+            size_t      i = 0;
 
-        template <size_t... M>
-        constexpr auto add_attr(const Attr<M> &...attributes) const {
-            if constexpr (sizeof...(M) == 0) {
-                return *this;
-            } else if constexpr (sizeof...(M) == 1) {
-                return *this + (attributes, ...);
-            } else {
-                return *this + (attributes + ...);
+            for (char ch : this->str())
+                res.value[i++] = ch;
+
+            if (M == 1) {
+                res.value[i++] = '\0';
+                return res;
             }
+
+            res.value[i++] = ' ';
+
+            for (char ch : s)
+                if (ch != '\0')
+                    res.value[i++] = ch;
+
+            return res;
         }
 
-        // assume value string is html escaped
         template <size_t M>
-        constexpr Attr<N + M + 2> operator==(const char (&s)[M]) const {
+        constexpr Attr<N + M + 2> operator=(const char (&s)[M]) const {
             Attr<N + M + 2> res;
 
             size_t i = 0;
@@ -100,98 +125,6 @@ namespace mup {
                 res.value[i++] = s[j];
 
             res.value[i++] = '\"';
-
-            return res;
-        }
-
-        constexpr Attr<N> operator==(bool v) const {
-            if (v)
-                return *this;
-            else
-                return {};
-        }
-
-        // max 7 digit character
-        constexpr Attr<N + 7 + 3> operator==(int v) const {
-            Attr<N + 7 + 3> res;
-
-            size_t i = 0;
-
-            for (auto ch : str()) {
-                res.value[i++] = ch;
-            }
-
-            unsigned int n;
-
-            if (v < 0) {
-                res.value[i++] = '-';
-                n              = static_cast<unsigned int>(-(v + 1)) + 1;
-            } else {
-                n = static_cast<unsigned int>(v);
-            }
-
-            char   digits[10];
-            size_t len = 0;
-
-            do {
-                digits[len++] = '0' + (n % 10);
-                n /= 10;
-            } while (n != 0);
-
-            while (len > 0) {
-                res.value[i++] = digits[--len];
-            }
-            res.value[i++] = '"';
-
-            return res;
-        }
-
-        constexpr Attr<N + 7 + 3> operator==(double v) const {
-            Attr<N + 7 + 3> res;
-
-            size_t i = 0;
-
-            for (auto ch : str()) {
-                res.value[i++] = ch;
-            }
-
-            res.value[i++] = '=';
-            res.value[i++] = '"';
-
-            // Reserve one character for the decimal point and two for decimals.
-            constexpr unsigned scale = 100;
-
-            unsigned int n;
-
-            if (v < 0) {
-                res.value[i++] = '-';
-                v              = -v;
-            }
-
-            n = static_cast<unsigned int>(v * scale + 0.5f);
-
-            // Integer part
-            unsigned int whole = n / scale;
-
-            char   digits[4];
-            size_t len = 0;
-
-            do {
-                digits[len++] = '0' + (whole % 10);
-                whole /= 10;
-            } while (whole != 0);
-
-            while (len > 0) {
-                res.value[i++] = digits[--len];
-            }
-
-            // Decimal point
-            res.value[i++] = '.';
-
-            // Two decimal digits
-            res.value[i++] = '0' + ((n / 10) % 10);
-            res.value[i++] = '0' + (n % 10);
-            res.value[i++] = '"';
 
             return res;
         }
@@ -217,29 +150,11 @@ namespace mup {
     }
 
     inline void __test__() {
-        constexpr auto a = "test"_attr;
-        constexpr auto b = a.add_attr("foo"_attr);
-        constexpr auto c = a.add_attr("foo"_attr, "bar"_attr);
-        constexpr auto d = a.add_attr("foo"_attr, "bar"_attr, "baz"_attr);
-
-        static_assert(a.str() == std::string_view("test"));
-        static_assert(b.str() == std::string_view("test foo"));
-        static_assert(c.str() == std::string_view("test foo bar"));
-        static_assert(d.str() == std::string_view("test foo bar baz"));
-    }
-
-    inline void __test2__() {
         constexpr Attr a = "a";
-        constexpr Attr b = a == "b";
-        constexpr Attr c = a == 3.14;
-        constexpr Attr d = a == true;
-        constexpr Attr e = a == false;
+        constexpr Attr b = a = "b";
 
         static_assert(a.str() == std::string_view("a"));
         static_assert(b.str() == std::string_view("a=\"b\""));
-        static_assert(c.str() == std::string_view("a=\"3.14\""));
-        static_assert(d.str() == std::string_view("a"));
-        static_assert(e.str().empty());
     }
 
     std::string value_to_string(Value auto v) {
@@ -308,7 +223,7 @@ namespace mup {
         }
 
         operator std::string() const {
-            constexpr Attr a = name.add_attr(attr...);
+            constexpr Attr a = name.append(attr...);
 
             size_t expected_size = a.size();
             for (auto &attribute : attributes) {
@@ -349,7 +264,7 @@ namespace mup {
         }
 
         operator std::string() const {
-            constexpr Attr a = name.add_attr(attr...);
+            constexpr Attr a = name.append(attr...);
 
             size_t expected_size = a.size();
             for (auto &attribute : attributes) {
