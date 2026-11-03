@@ -362,94 +362,165 @@ namespace mup::html {
 
     // Global attributes
 
+    inline constexpr Attr id               = "id";
     inline constexpr Attr id_              = "id";
     inline constexpr Attr class_           = "class";
     inline constexpr Attr style_           = "style";
     inline constexpr Attr title_           = "title";
+    inline constexpr Attr lang             = "lang";
     inline constexpr Attr lang_            = "lang";
+    inline constexpr Attr dir              = "dir";
     inline constexpr Attr dir_             = "dir";
+    inline constexpr Attr hidden           = "hidden";
     inline constexpr Attr hidden_          = "hidden";
+    inline constexpr Attr tabindex         = "tabindex";
     inline constexpr Attr tabindex_        = "tabindex";
+    inline constexpr Attr role             = "role";
     inline constexpr Attr role_            = "role";
     inline constexpr Attr slot_            = "slot";
+    inline constexpr Attr draggable        = "draggable";
     inline constexpr Attr draggable_       = "draggable";
+    inline constexpr Attr contenteditable  = "contenteditable";
     inline constexpr Attr contenteditable_ = "contenteditable";
+    inline constexpr Attr spellcheck       = "spellcheck";
     inline constexpr Attr spellcheck_      = "spellcheck";
+    inline constexpr Attr translate        = "translate";
     inline constexpr Attr translate_       = "translate";
+    inline constexpr Attr accesskey        = "accesskey";
     inline constexpr Attr accesskey_       = "accesskey";
+    inline constexpr Attr autofocus        = "autofocus";
     inline constexpr Attr autofocus_       = "autofocus";
 
     // Form attributes
 
+    inline constexpr Attr name            = "name";
     inline constexpr Attr name_           = "name";
+    inline constexpr Attr value           = "value";
     inline constexpr Attr value_          = "value";
+    inline constexpr Attr type            = "type";
     inline constexpr Attr type_           = "type";
+    inline constexpr Attr placeholder     = "placeholder";
     inline constexpr Attr placeholder_    = "placeholder";
+    inline constexpr Attr required        = "required";
     inline constexpr Attr required_       = "required";
+    inline constexpr Attr disabled        = "disabled";
     inline constexpr Attr disabled_       = "disabled";
+    inline constexpr Attr readonly        = "readonly";
     inline constexpr Attr readonly_       = "readonly";
+    inline constexpr Attr checked         = "checked";
     inline constexpr Attr checked_        = "checked";
+    inline constexpr Attr selected        = "selected";
     inline constexpr Attr selected_       = "selected";
+    inline constexpr Attr multiple        = "multiple";
     inline constexpr Attr multiple_       = "multiple";
+    inline constexpr Attr autocomplete    = "autocomplete";
     inline constexpr Attr autocomplete_   = "autocomplete";
+    inline constexpr Attr minlength       = "minlength";
     inline constexpr Attr minlength_      = "minlength";
+    inline constexpr Attr maxlength       = "maxlength";
     inline constexpr Attr maxlength_      = "maxlength";
+    inline constexpr Attr min             = "min";
     inline constexpr Attr min_            = "min";
+    inline constexpr Attr max             = "max";
     inline constexpr Attr max_            = "max";
+    inline constexpr Attr step            = "step";
     inline constexpr Attr step_           = "step";
+    inline constexpr Attr pattern         = "pattern";
     inline constexpr Attr pattern_        = "pattern";
+    inline constexpr Attr rows            = "rows";
     inline constexpr Attr rows_           = "rows";
+    inline constexpr Attr cols            = "cols";
     inline constexpr Attr cols_           = "cols";
+    inline constexpr Attr wrap            = "wrap";
     inline constexpr Attr wrap_           = "wrap";
+    inline constexpr Attr accept          = "accept";
     inline constexpr Attr accept_         = "accept";
+    inline constexpr Attr capture         = "capture";
     inline constexpr Attr capture_        = "capture";
     inline constexpr Attr for_            = "for";
     inline constexpr Attr form_           = "form";
+    inline constexpr Attr formaction      = "formaction";
     inline constexpr Attr formaction_     = "formaction";
+    inline constexpr Attr formenctype     = "formenctype";
     inline constexpr Attr formenctype_    = "formenctype";
+    inline constexpr Attr formmethod      = "formmethod";
     inline constexpr Attr formmethod_     = "formmethod";
+    inline constexpr Attr formnovalidate  = "formnovalidate";
     inline constexpr Attr formnovalidate_ = "formnovalidate";
+    inline constexpr Attr formtarget      = "formtarget";
     inline constexpr Attr formtarget_     = "formtarget";
 
     // Link and resource attributes
 
+    inline constexpr Attr href             = "href";
     inline constexpr Attr href_            = "href";
+    inline constexpr Attr src              = "src";
     inline constexpr Attr src_             = "src";
+    inline constexpr Attr alt              = "alt";
     inline constexpr Attr alt_             = "alt";
+    inline constexpr Attr target           = "target";
     inline constexpr Attr target_          = "target";
+    inline constexpr Attr rel              = "rel";
     inline constexpr Attr rel_             = "rel";
+    inline constexpr Attr download         = "download";
     inline constexpr Attr download_        = "download";
+    inline constexpr Attr media            = "media";
     inline constexpr Attr media_           = "media";
+    inline constexpr Attr integrity        = "integrity";
     inline constexpr Attr integrity_       = "integrity";
+    inline constexpr Attr crossorigin      = "crossorigin";
     inline constexpr Attr crossorigin_     = "crossorigin";
+    inline constexpr Attr referrerpolicy   = "referrerpolicy";
     inline constexpr Attr referrerpolicy_  = "referrerpolicy";
+    inline constexpr Attr loading          = "loading";
     inline constexpr Attr loading_         = "loading";
+    inline constexpr Attr fetchpriority    = "fetchpriority";
     inline constexpr Attr fetchpriority_   = "fetchpriority";
+    inline constexpr Attr async            = "async";
     inline constexpr Attr async_           = "async";
+    inline constexpr Attr defer            = "defer";
     inline constexpr Attr defer_           = "defer";
+    inline constexpr Attr width            = "width";
     inline constexpr Attr width_           = "width";
+    inline constexpr Attr height           = "height";
     inline constexpr Attr height_          = "height";
+    inline constexpr Attr srcset           = "srcset";
     inline constexpr Attr srcset_          = "srcset";
+    inline constexpr Attr sizes            = "sizes";
     inline constexpr Attr sizes_           = "sizes";
+    inline constexpr Attr sandbox          = "sandbox";
     inline constexpr Attr sandbox_         = "sandbox";
+    inline constexpr Attr allow            = "allow";
     inline constexpr Attr allow_           = "allow";
+    inline constexpr Attr allowfullscreen  = "allowfullscreen";
     inline constexpr Attr allowfullscreen_ = "allowfullscreen";
 
     // Table attributes
 
+    inline constexpr Attr colspan  = "colspan";
     inline constexpr Attr colspan_ = "colspan";
+    inline constexpr Attr rowspan  = "rowspan";
     inline constexpr Attr rowspan_ = "rowspan";
+    inline constexpr Attr headers  = "headers";
     inline constexpr Attr headers_ = "headers";
+    inline constexpr Attr scope    = "scope";
     inline constexpr Attr scope_   = "scope";
 
     // Media attributes
 
+    inline constexpr Attr controls     = "controls";
     inline constexpr Attr controls_    = "controls";
+    inline constexpr Attr autoplay     = "autoplay";
     inline constexpr Attr autoplay_    = "autoplay";
+    inline constexpr Attr loop         = "loop";
     inline constexpr Attr loop_        = "loop";
+    inline constexpr Attr muted        = "muted";
     inline constexpr Attr muted_       = "muted";
+    inline constexpr Attr playsinline  = "playsinline";
     inline constexpr Attr playsinline_ = "playsinline";
+    inline constexpr Attr poster       = "poster";
     inline constexpr Attr poster_      = "poster";
+    inline constexpr Attr preload      = "preload";
     inline constexpr Attr preload_     = "preload";
 
     // Accessibility attributes
@@ -501,42 +572,75 @@ namespace mup::html {
 
     // Common event handler attributes
 
+    inline constexpr Attr onclick       = "onclick";
     inline constexpr Attr onclick_      = "onclick";
+    inline constexpr Attr ondblclick    = "ondblclick";
     inline constexpr Attr ondblclick_   = "ondblclick";
+    inline constexpr Attr oninput       = "oninput";
     inline constexpr Attr oninput_      = "oninput";
+    inline constexpr Attr onchange      = "onchange";
     inline constexpr Attr onchange_     = "onchange";
+    inline constexpr Attr onsubmit      = "onsubmit";
     inline constexpr Attr onsubmit_     = "onsubmit";
+    inline constexpr Attr onreset       = "onreset";
     inline constexpr Attr onreset_      = "onreset";
+    inline constexpr Attr onkeydown     = "onkeydown";
     inline constexpr Attr onkeydown_    = "onkeydown";
+    inline constexpr Attr onkeyup       = "onkeyup";
     inline constexpr Attr onkeyup_      = "onkeyup";
+    inline constexpr Attr onkeypress    = "onkeypress";
     inline constexpr Attr onkeypress_   = "onkeypress";
+    inline constexpr Attr onfocus       = "onfocus";
     inline constexpr Attr onfocus_      = "onfocus";
+    inline constexpr Attr onblur        = "onblur";
     inline constexpr Attr onblur_       = "onblur";
+    inline constexpr Attr onload        = "onload";
     inline constexpr Attr onload_       = "onload";
+    inline constexpr Attr onerror       = "onerror";
     inline constexpr Attr onerror_      = "onerror";
+    inline constexpr Attr onmouseover   = "onmouseover";
     inline constexpr Attr onmouseover_  = "onmouseover";
+    inline constexpr Attr onmouseout    = "onmouseout";
     inline constexpr Attr onmouseout_   = "onmouseout";
+    inline constexpr Attr onmouseenter  = "onmouseenter";
     inline constexpr Attr onmouseenter_ = "onmouseenter";
+    inline constexpr Attr onmouseleave  = "onmouseleave";
     inline constexpr Attr onmouseleave_ = "onmouseleave";
+    inline constexpr Attr onscroll      = "onscroll";
     inline constexpr Attr onscroll_     = "onscroll";
+    inline constexpr Attr onwheel       = "onwheel";
     inline constexpr Attr onwheel_      = "onwheel";
 
     // Other common attributes
 
+    inline constexpr Attr datetime        = "datetime";
     inline constexpr Attr datetime_       = "datetime";
     inline constexpr Attr cite_           = "cite";
+    inline constexpr Attr open            = "open";
     inline constexpr Attr open_           = "open";
+    inline constexpr Attr start           = "start";
     inline constexpr Attr start_          = "start";
+    inline constexpr Attr reversed        = "reversed";
     inline constexpr Attr reversed_       = "reversed";
+    inline constexpr Attr manifest        = "manifest";
     inline constexpr Attr manifest_       = "manifest";
+    inline constexpr Attr nonce           = "nonce";
     inline constexpr Attr nonce_          = "nonce";
+    inline constexpr Attr content         = "content";
     inline constexpr Attr content_        = "content";
+    inline constexpr Attr charset         = "charset";
     inline constexpr Attr charset_        = "charset";
+    inline constexpr Attr http_equiv      = "http-equiv";
     inline constexpr Attr http_equiv_     = "http-equiv";
+    inline constexpr Attr action          = "action";
     inline constexpr Attr action_         = "action";
+    inline constexpr Attr method          = "method";
     inline constexpr Attr method_         = "method";
+    inline constexpr Attr enctype         = "enctype";
     inline constexpr Attr enctype_        = "enctype";
+    inline constexpr Attr novalidate      = "novalidate";
     inline constexpr Attr novalidate_     = "novalidate";
+    inline constexpr Attr accept_charset  = "accept-charset";
     inline constexpr Attr accept_charset_ = "accept-charset";
 } // namespace mup::html
 

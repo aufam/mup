@@ -403,77 +403,128 @@ namespace mup::mathml {
 
     // MathML presentation attributes
 
+    inline constexpr Attr mathvariant     = "mathvariant";
     inline constexpr Attr mathvariant_    = "mathvariant";
+    inline constexpr Attr mathsize        = "mathsize";
     inline constexpr Attr mathsize_       = "mathsize";
+    inline constexpr Attr mathcolor       = "mathcolor";
     inline constexpr Attr mathcolor_      = "mathcolor";
+    inline constexpr Attr mathbackground  = "mathbackground";
     inline constexpr Attr mathbackground_ = "mathbackground";
+    inline constexpr Attr mathfamily      = "mathfamily";
     inline constexpr Attr mathfamily_     = "mathfamily";
+    inline constexpr Attr mathweight      = "mathweight";
     inline constexpr Attr mathweight_     = "mathweight";
+    inline constexpr Attr mathstyle       = "mathstyle";
     inline constexpr Attr mathstyle_      = "mathstyle";
 
     // MathML layout attributes
 
+    inline constexpr Attr displaystyle          = "displaystyle";
     inline constexpr Attr displaystyle_         = "displaystyle";
+    inline constexpr Attr scriptlevel           = "scriptlevel";
     inline constexpr Attr scriptlevel_          = "scriptlevel";
+    inline constexpr Attr display               = "display";
     inline constexpr Attr display_              = "display";
+    inline constexpr Attr scriptminsize         = "scriptminsize";
     inline constexpr Attr scriptminsize_        = "scriptminsize";
+    inline constexpr Attr scriptsizemultiplier  = "scriptsizemultiplier";
     inline constexpr Attr scriptsizemultiplier_ = "scriptsizemultiplier";
 
     // MathML alignment attributes
 
+    inline constexpr Attr mathalign      = "mathalign";
     inline constexpr Attr mathalign_     = "mathalign";
+    inline constexpr Attr align          = "align";
     inline constexpr Attr align_         = "align";
+    inline constexpr Attr rowalign       = "rowalign";
     inline constexpr Attr rowalign_      = "rowalign";
+    inline constexpr Attr columnalign    = "columnalign";
     inline constexpr Attr columnalign_   = "columnalign";
+    inline constexpr Attr rowspacing     = "rowspacing";
     inline constexpr Attr rowspacing_    = "rowspacing";
+    inline constexpr Attr columnspacing  = "columnspacing";
     inline constexpr Attr columnspacing_ = "columnspacing";
+    inline constexpr Attr rowlines       = "rowlines";
     inline constexpr Attr rowlines_      = "rowlines";
+    inline constexpr Attr columnlines    = "columnlines";
     inline constexpr Attr columnlines_   = "columnlines";
+    inline constexpr Attr frame          = "frame";
     inline constexpr Attr frame_         = "frame";
+    inline constexpr Attr framespacing   = "framespacing";
     inline constexpr Attr framespacing_  = "framespacing";
 
     // MathML table attributes
 
+    inline constexpr Attr rowspan       = "rowspan";
     inline constexpr Attr rowspan_      = "rowspan";
+    inline constexpr Attr columnspan    = "columnspan";
     inline constexpr Attr columnspan_   = "columnspan";
+    inline constexpr Attr groupalign    = "groupalign";
     inline constexpr Attr groupalign_   = "groupalign";
+    inline constexpr Attr equalrows     = "equalrows";
     inline constexpr Attr equalrows_    = "equalrows";
+    inline constexpr Attr equalcolumns  = "equalcolumns";
     inline constexpr Attr equalcolumns_ = "equalcolumns";
 
     // MathML operator attributes
 
+    inline constexpr Attr form           = "form";
     inline constexpr Attr form_          = "form";
+    inline constexpr Attr fence          = "fence";
     inline constexpr Attr fence_         = "fence";
+    inline constexpr Attr separator      = "separator";
     inline constexpr Attr separator_     = "separator";
+    inline constexpr Attr stretchy       = "stretchy";
     inline constexpr Attr stretchy_      = "stretchy";
+    inline constexpr Attr symmetric      = "symmetric";
     inline constexpr Attr symmetric_     = "symmetric";
+    inline constexpr Attr largeop        = "largeop";
     inline constexpr Attr largeop_       = "largeop";
+    inline constexpr Attr movablelimits  = "movablelimits";
     inline constexpr Attr movablelimits_ = "movablelimits";
+    inline constexpr Attr accent         = "accent";
     inline constexpr Attr accent_        = "accent";
+    inline constexpr Attr accentunder    = "accentunder";
     inline constexpr Attr accentunder_   = "accentunder";
+    inline constexpr Attr lspace         = "lspace";
     inline constexpr Attr lspace_        = "lspace";
+    inline constexpr Attr rspace         = "rspace";
     inline constexpr Attr rspace_        = "rspace";
+    inline constexpr Attr minsize        = "minsize";
     inline constexpr Attr minsize_       = "minsize";
+    inline constexpr Attr maxsize        = "maxsize";
     inline constexpr Attr maxsize_       = "maxsize";
 
     // MathML semantics and annotations
 
+    inline constexpr Attr encoding       = "encoding";
     inline constexpr Attr encoding_      = "encoding";
+    inline constexpr Attr definitionurl  = "definitionURL";
     inline constexpr Attr definitionurl_ = "definitionURL";
+    inline constexpr Attr cd             = "cd";
     inline constexpr Attr cd_            = "cd";
 
     // MathML action attributes
 
+    inline constexpr Attr actiontype  = "actiontype";
     inline constexpr Attr actiontype_ = "actiontype";
+    inline constexpr Attr selection   = "selection";
     inline constexpr Attr selection_  = "selection";
 
     // MathML input attributes
 
+    inline constexpr Attr notation      = "notation";
     inline constexpr Attr notation_     = "notation";
+    inline constexpr Attr inputmode     = "inputmode";
     inline constexpr Attr inputmode_    = "inputmode";
+    inline constexpr Attr decimalpoint  = "decimalpoint";
     inline constexpr Attr decimalpoint_ = "decimalpoint";
+    inline constexpr Attr type          = "type";
     inline constexpr Attr type_         = "type";
+    inline constexpr Attr value         = "value";
     inline constexpr Attr value_        = "value";
+    inline constexpr Attr name          = "name";
     inline constexpr Attr name_         = "name";
 } // namespace mup::mathml
 
