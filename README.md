@@ -107,7 +107,7 @@ std::string Key(std::string k, bool disable) {
 This is just equal to:
 ```cpp
 std::string Key(std::string k, bool disable) {
-    auto btn = button<(class_="key")>{};
+    auto btn = button<"class=\"key\"">{};
 
     btn.attributes = {
         "id=\"key-"+k+"\"",
@@ -116,7 +116,7 @@ std::string Key(std::string k, bool disable) {
     };
 
     if (disable)
-        btn.push_back("disabled");
+        btn.attributes.push_back("disabled");
 
     btn.content = k;
 
