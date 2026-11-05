@@ -11,7 +11,7 @@ namespace mup {
 
     struct RuntimeAttr;
 
-    template <bool self_closing, Attr name, Attr... attr>
+    template <bool not_self_closing, Attr name, Attr... attr>
     struct Element;
 
     template <typename T>
@@ -29,10 +29,16 @@ namespace mup {
     };
 
     template <typename T>
+    struct is_attr : std::false_type {};
+
+    template <size_t N>
+    struct is_attr<Attr<N>> : std::true_type {};
+
+    template <typename T>
     concept RuntimeAttrConcept = std::is_same_v<T, RuntimeAttr>;
 
     template <typename T>
-    concept ValueOrAttr = Value<T> || RuntimeAttrConcept<T>;
+    concept ValueOrAttr = Value<T> || RuntimeAttrConcept<T> || is_attr<T>::value;
 
 
     template <size_t N>
@@ -138,6 +144,10 @@ namespace mup {
                 return {s + "=\"" + std::to_string(v) + "\""};
             }
         }
+
+        RuntimeAttr operator,(RuntimeAttr other) const {
+            return {std::string(str()) + " " + other.attr};
+        }
     };
 
     template <Attr a>
@@ -176,6 +186,8 @@ namespace mup {
 
                     if constexpr (RuntimeAttrConcept<T>) {
                         attributes_count++;
+                    } else if constexpr (is_attr<T>::value) {
+                        attributes_count++;
                     } else {
                         children_count++;
                     }
@@ -190,6 +202,8 @@ namespace mup {
 
                     if constexpr (RuntimeAttrConcept<T>) {
                         attributes.push_back(std::move(values.attr));
+                    } else if constexpr (is_attr<T>::value) {
+                        attributes.push_back(std::string(values.str()));
                     } else {
                         children.push_back(value_to_string(std::move(values)));
                     }
@@ -216,6 +230,13 @@ namespace mup {
                     first = false;
                 }
             }
+        }
+
+        auto operator()(RuntimeAttrConcept auto... attrs) const {
+            auto ret = *this;
+            ret.attributes.reserve(attributes.size() + sizeof...(attrs));
+            (ret.attributes.push_back(attrs.attr), ...);
+            return ret;
         }
 
         operator std::string() const {
@@ -257,6 +278,13 @@ namespace mup {
 
         explicit Element(RuntimeAttrConcept auto... rattr) {
             attributes = {std::move(rattr.attr)...};
+        }
+
+        auto operator()(RuntimeAttrConcept auto... attrs) const {
+            auto ret = *this;
+            ret.attributes.reserve(attributes.size() + sizeof...(attrs));
+            (ret.attributes.push_back(attrs.attr), ...);
+            return ret;
         }
 
         operator std::string() const {
