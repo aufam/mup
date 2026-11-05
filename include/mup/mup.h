@@ -60,11 +60,7 @@ namespace mup {
 
         template <size_t... M>
         constexpr auto append(const Attr<M> &...attributes) const {
-            if constexpr (sizeof...(M) == 0) {
-                return *this;
-            } else {
-                return ((*this, attributes), ...);
-            }
+            return (*this, ..., attributes);
         }
 
         template <size_t M>
